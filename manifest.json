@@ -1,0 +1,29 @@
+{
+    "name": "Gratitude Forest",
+    "description": "Gratful message grows into a tree",
+    "version": "0.0.0.1",
+    "permissions": [
+        "storage",
+        "unlimitedStorage"
+    ],
+    "background": {
+      "scripts": [
+        "js/libraries/math2.js",
+        "js/libraries/stats.js",
+        "js/libraries/three.min.js",
+        "js/libraries/geometryHelpers.js",
+        "js/libraries/tweenmax.js",
+        "js/libraries/scenecolors.js",
+        "js/libraries/orbitcontrols.js",
+        "js/libraries/custommesh.js",
+        "js/libraries/dat.gui.min.js"
+      ],
+      "persistent": false
+    },
+    "optional_permissions": ["notifications"],
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "manifest_version": 2,
+    "content_security_policy": "script-src 'self'; object-src 'self'"
+}

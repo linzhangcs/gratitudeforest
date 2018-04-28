@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Gratitude Forest</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id="container">
+		<div class="intro-text">
+				<div id="prompt">
+						<p id="question" class="intro-caption">What are you thankful for today?</p>
+						<input id="message-input" maxLength="150"></input>
+						<div id="userQuoteText">
+								<p id="userQuote" class="quote"></p>
+						</div>
+						<div id="shareOptionContainer" class="tooltip">
+								<input type="checkbox" id="shareCheckbox" checked />
+								<label id="shareCheckboxVisible" style="font-size:1.1em;" for="shareCheckbox"><span></span>Share</label>
+								<span class="tooltiptext">Anonymously share your gratitude</span>
+						</div>
+
+				</div>
+	</div>
+	<div id="world"/>
+	<script src="js/libraries/math2.js"></script>
+	<script src="js/libraries/stats.js"></script>
+	<script src="js/libraries/three.min.js"></script>
+	<script src="js/libraries/geometryHelpers.js"></script>
+	<script src="js/libraries/tweenmax.js"></script>
+	<script src="js/libraries/scenecolors.js"></script>
+	<script src="js/libraries/orbitcontrols.js"></script>
+	<script src="js/libraries/custommesh.js"></script>
+	<script src="js/libraries/dat.gui.min.js"></script>
+	<script src="lowpoly.js"></script>
+</body>
+</html>
