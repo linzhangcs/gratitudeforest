@@ -16,7 +16,11 @@
         "js/libraries/scenecolors.js",
         "js/libraries/orbitcontrols.js",
         "js/libraries/custommesh.js",
-        "js/libraries/dat.gui.min.js"
+        "js/libraries/dat.gui.min.js",
+        "js/foliage.js",
+        "js/tree.js",
+        "js/particle.js",
+        "js/scene.js"
       ],
       "persistent": false
     },

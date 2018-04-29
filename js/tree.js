@@ -34,9 +34,11 @@ Trunc = function(complex, height){
 	this.hierarchy = 1;
 
   this.truncHeight = height;
-  this.truncStartRadius = 6 * (height/100);
-  this.foliageDensity = 5 * (height/100);
-  this.foliageSize = 10 * (height/100);
+  this.truncStartRadius = 3 * (height/110);
+  this.foliageDensity = 2;
+
+  // this.truncStartRadius = (complex) ? parameters.truncThickness : Math2.rangeRandom(2,4);
+
 	// parametrables
 	this.truncColor = (complex) ? parameters.truncColor : Colors.getRandomFrom(Colors.trunc);
 	// this.truncHeight = (complex) ? parameters.truncHeight : Math2.rangeRandom(70,100);
@@ -46,6 +48,7 @@ Trunc = function(complex, height){
 	this.shapeAngleStart = Math2.rangeRandom(Math.PI/4, Math.PI/2);
 	this.shapeAmplitude = Math2.rangeRandom(this.truncStartRadius/4, this.truncStartRadius*6);
 	this.noise = (complex)? parameters.truncNoise : Math2.rangeRandom(this.truncStartRadius/8, this.truncStartRadius/4);
+  // this.foliageDensity = (complex)? parameters.foliageDensity : 2;
 	this.shapeAngle = Math.PI - this.shapeAngleStart;
 	this.freq = this.shapeAngle/this.verticalSegments;
 	this.segHeight = (this.truncHeight / this.verticalSegments);
@@ -243,7 +246,7 @@ Trunc = function(complex, height){
 		}else if(type == "elbowBranch"){
 			r = Math2.rangeRandom(this.truncHeight*.05,this.truncHeight*.15);
 			th = Math2.rangeRandom(this.truncStartRadius*40/(1+v.y),this.truncStartRadius*60/(1+v.y));
-			attach = new ElbowBranch(r,th,this.foliageSize, col, colorFoliagePalette, this.hierarchy+1, complex).mesh;
+			attach = new ElbowBranch(r,th,col, colorFoliagePalette, this.hierarchy+1, complex).mesh;
 			attach.quaternion.setFromUnitVectors ( new THREE.Vector3( -1, 0, 0 ), new THREE.Vector3( v.x, 0, v.z ).normalize() );
 		}else if(type == "branch"){
 			s = Math2.rangeRandom(this.truncHeight*.03,this.truncHeight*.06);
@@ -332,9 +335,9 @@ ElbowBranch = function(radius, thickness, color, colorFoliagePalette, hierarchy,
 	this.mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(thickness,-thickness*2,0));
 	this.mesh.userData.hierarchy = hierarchy;
   this.mesh.userData.refClass = this;
-  this.folThick = this.foliageSize*(1+Math.random()*.5)
-	// var folThick = (complex)? parameters.foliageSize*(1+Math.random()*.5) : Math2.rangeRandom(8,24);
-	this.attach = new Foliage(this.folThick, colorFoliagePalette, hierarchy+1,complex).mesh;
+
+	var folThick = (complex)? parameters.foliageSize*(1+Math.random()*.5) : Math2.rangeRandom(8,24);
+	this.attach = new Foliage(folThick, colorFoliagePalette, hierarchy+1,complex).mesh;
 
 	this.attach.position.x = -radius;
 	this.attach.position.y = radius - (thickness*3);

@@ -312,7 +312,7 @@ msgInput.addEventListener('keypress', function(e){
    console.log('msg length' + msg.innerText.length);
 
    msg.style.display = 'block';
-   var height = Math2.map(msg.innerText.length, 5, 100, 30, 100);
+   var height = Math2.map(msg.innerText.length, 10, 80, 70, 110);
    createTree(height);
   }
 }, false);
