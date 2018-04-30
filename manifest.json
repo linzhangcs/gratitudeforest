@@ -1,6 +1,6 @@
 {
     "name": "Gratitude Forest",
-    "description": "Gratful message grows into a tree",
+    "description": "Grateful message grows into a tree",
     "version": "0.0.0.1",
     "permissions": [
         "storage",
@@ -20,7 +20,8 @@
         "js/foliage.js",
         "js/tree.js",
         "js/particle.js",
-        "js/scene.js"
+        "js/scene.js",
+        "js/extension.js"
       ],
       "persistent": false
     },

@@ -20,9 +20,10 @@ Cloud = function(){
 
 		// set the position
 		m.position.x = i*15;
-		m.position.y = Math.random()*10;
+		m.position.y = Math.random()*30;
 		m.position.z = Math.random()*10;
-		m.rotation.z = Math.random()*Math.PI*2;
+		// m.rotation.z = Math.random()*900;
+    m.rotation.z = Math.random()*Math.PI*2;
 		m.rotation.y = Math.random()*Math.PI*2;
 
 		// set the size of the cube randomly

@@ -35,7 +35,7 @@ Trunc = function(complex, height){
 
   this.truncHeight = height;
   this.truncStartRadius = 3 * (height/110);
-  this.foliageDensity = 2;
+  this.foliageDensity =  2;
 
   // this.truncStartRadius = (complex) ? parameters.truncThickness : Math2.rangeRandom(2,4);
 
@@ -48,7 +48,7 @@ Trunc = function(complex, height){
 	this.shapeAngleStart = Math2.rangeRandom(Math.PI/4, Math.PI/2);
 	this.shapeAmplitude = Math2.rangeRandom(this.truncStartRadius/4, this.truncStartRadius*6);
 	this.noise = (complex)? parameters.truncNoise : Math2.rangeRandom(this.truncStartRadius/8, this.truncStartRadius/4);
-  // this.foliageDensity = (complex)? parameters.foliageDensity : 2;
+  this.foliageDensity = (complex)? parameters.foliageDensity : 2;
 	this.shapeAngle = Math.PI - this.shapeAngleStart;
 	this.freq = this.shapeAngle/this.verticalSegments;
 	this.segHeight = (this.truncHeight / this.verticalSegments);

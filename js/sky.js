@@ -6,7 +6,7 @@ Sky = function(colorPalette, scale){
 	this.mesh = new THREE.Object3D();
 
 	// choose a number of clouds to be scattered in the sky
-	this.nClouds = 30;
+	this.nClouds = 50;
 
   //colorPalette, scale, this.mesh.geometry.vertices.length
   this.colorPalette = colorPalette;
@@ -35,7 +35,7 @@ Sky = function(colorPalette, scale){
 
 		// for a better result, we position the clouds
 		// at random depths inside of the scene
-		c.mesh.position.z = -400-Math.random()*400;
+		c.mesh.position.z = -400-Math.random()*1000;
 
 		// we also set a random scale for each cloud
 		var s = 1+Math.random()*2;

@@ -224,38 +224,47 @@ function createFloor(){
 }
 
 // FOREST
+// function createForest(){
+//   var nTrees = 25;
+//   var treesDist = 25;
+//   for (var i = 0; i< nTrees; i++){
+//     var tree = new Tree(false, 3);
+//     tree.mesh.position.y = -5;
+//     tree.mesh.position.x = -((nTrees/2)*treesDist) + (i*treesDist);
+//     tree.mesh.position.z = -Math.random()*150 -150;
+//     scene.add(tree.mesh);
+//     trees.push(tree);
+//   }
+// }
 
 function createForest(){
-  var nTrees = 25;
-  var treesDist = 25;
-  for (var i = 0; i< nTrees; i++){
-    var tree = new Tree(false);
-    tree.mesh.position.y = -5;
-    tree.mesh.position.x = -((nTrees/2)*treesDist) + (i*treesDist);
-    tree.mesh.position.z = -Math.random()*150 -150;
-    scene.add(tree.mesh);
-    trees.push(tree);
-  }
+  chrome.storage.sync.get(['messages'], function(results) {
+    // var treesDist  = 25;
+    var messages = results.messages;
+    var treeNum = messages.length;
+    console.log(treeNum);
+    if(treeNum > 0){
+      for(var i = 0; i < treeNum; i++){
+        treesDist = Math2.rangeRandomInt(10, 50);
+        console.log("treesDist: " + treesDist);
+        console.log("messages: " + messages[i] + " i: "+ i + " length: " + messages[i].length);
+        var tree = new Tree(false, messages[i].length*10);
+        tree.mesh.position.y = -5;
+        tree.mesh.position.x = -((treeNum/2)*treesDist) + (i*treesDist);
+        tree.mesh.position.z = -Math.random()*150 -150;
+        scene.add(tree.mesh);
+        trees.push(tree);
+      }
+    }
+  });
 }
-
 // TREE
-
 function createTree(height){
-  if (tree){
-    tree.fly(function(){
-      scene.remove(tree.mesh);
-      tree.kill();
-      tree = null;
-      foliagesComplex = [];
-      createTree();
-    })
-  }else{
-    tree = new Tree(true, height);
-    tree.mesh.position.y = -10;
-    scene.add(tree.mesh);
-    tree.trunc.grow();
-    updateShadows();
-  }
+  var tree = new Tree(true, height);
+  tree.mesh.position.y = -10;
+  scene.add(tree.mesh);
+  tree.trunc.grow();
+  updateShadows();
 }
 
 function grow(mesh){
@@ -281,7 +290,6 @@ var sky;
 function createSky(){
   var scale = (Math.floor(Math.random()*20)+5) *(1+Math.random()*.5);
   var particlePalette =  Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens, Colors.purples]);
-
   // var particlePalette = Colors.yellows;
 	sky = new Sky(particlePalette, scale);
 	sky.mesh.position.y = -600;
@@ -290,32 +298,13 @@ function createSky(){
 
 function init(event){
   initCore();
-  initGUI();
+  // initGUI();
   createLights();
   createFloor();
   createSky();
-  // createForest();
-  // createTree();
+  createForest();
   loop();
 }
-
-// Get message from the message-msgInput
-var msgInput = document.getElementById('message-input');
-var msg = document.getElementById('userQuoteText');
-console.log(msgInput);
-console.log(msg);
-
-msgInput.addEventListener('keypress', function(e){
- if (event.keyCode == 13 || event.which == 13){
-   this.style.display = 'none';
-   msg.innerText = msgInput.value.trim();
-   console.log('msg length' + msg.innerText.length);
-
-   msg.style.display = 'block';
-   var height = Math2.map(msg.innerText.length, 10, 80, 70, 110);
-   createTree(height);
-  }
-}, false);
 
 function updateShadows(){
   scene.traverse( function ( object ) {
@@ -327,7 +316,6 @@ function updateShadows(){
 }
 
 function loop(){
-  // console.log("waiting",waitingParticles.length);
   var frustum = new THREE.Frustum();
   frustum.setFromMatrix( new THREE.Matrix4().multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse ) );
   // sky.launchParticle();
@@ -342,33 +330,21 @@ function loop(){
   //   fol.launchParticle();
   // }
 
-  for (var i=0; i<flyingParticles.length; i++){
-    var p = flyingParticles[i];
-    p.position.x += p.userData.speedX + Math.random()/10;
-    p.position.y += p.userData.speedY + Math.random()/20;
-
-    p.rotation.x += .01 + Math.random()/100;
-    p.rotation.y += .01 + Math.random()/10;
-    p.rotation.z += .1 + Math.random()/20;
-
-    if(!frustum.containsPoint( p.position )){
-      p.visible = false;
-      waitingParticles.push(flyingParticles.splice(i,1)[0]);
-    }
-  }
+  // for (var i=0; i<flyingParticles.length; i++){
+  //   var p = flyingParticles[i];
+  //   p.position.x += p.userData.speedX + Math.random()/10;
+  //   p.position.y += p.userData.speedY + Math.random()/20;
+  //
+  //   p.rotation.x += .01 + Math.random()/100;
+  //   p.rotation.y += .01 + Math.random()/10;
+  //   p.rotation.z += .1 + Math.random()/20;
+  //
+  //   if(!frustum.containsPoint( p.position )){
+  //     p.visible = false;
+  //     waitingParticles.push(flyingParticles.splice(i,1)[0]);
+  //   }
+  // }
 
   render();
   requestAnimationFrame(loop);
 }
-
-//
-// function createStats(){
-//   // STATS
-//   stats = new Stats();
-//   stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
-//   // align top-left
-//   stats.domElement.style.position = 'absolute';
-//   stats.domElement.style.left = '0px';
-//   stats.domElement.style.top = '0px';
-//   document.body.appendChild( stats.domElement );
-// }
