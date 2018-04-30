@@ -239,25 +239,28 @@ function createFloor(){
 
 function createForest(){
   chrome.storage.sync.get(['messages'], function(results) {
-    // var treesDist  = 25;
-    var messages = results.messages;
-    var treeNum = messages.length;
-    console.log(treeNum);
-    if(treeNum > 0){
-      for(var i = 0; i < treeNum; i++){
-        treesDist = Math2.rangeRandomInt(10, 50);
-        console.log("treesDist: " + treesDist);
-        console.log("messages: " + messages[i] + " i: "+ i + " length: " + messages[i].length);
-        var tree = new Tree(false, messages[i].length*10);
-        tree.mesh.position.y = -5;
-        tree.mesh.position.x = -((treeNum/2)*treesDist) + (i*treesDist);
-        tree.mesh.position.z = -Math.random()*150 -150;
-        scene.add(tree.mesh);
-        trees.push(tree);
+    if(results.messages){
+      var treesDist;
+      var messages = results.messages;
+      var treeNum = messages.length;
+      console.log(treeNum);
+      if(treeNum > 0){
+        for(var i = 0; i < treeNum; i++){
+          treesDist = Math2.rangeRandomInt(20, 25);
+          console.log("treesDist: " + treesDist);
+          console.log("messages: " + messages[i] + " i: "+ i + " length: " + messages[i].length);
+          var tree = new Tree(false, messages[i].length*4);
+          tree.mesh.position.y = -5;
+          tree.mesh.position.x = -((treeNum/2)*treesDist) + (i*treesDist);
+          tree.mesh.position.z = -Math.random()*200 -150;
+          scene.add(tree.mesh);
+          trees.push(tree);
+        }
       }
     }
   });
 }
+
 // TREE
 function createTree(height){
   var tree = new Tree(true, height);

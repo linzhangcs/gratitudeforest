@@ -2,9 +2,6 @@ document.body.onload = function(){
   // Get message from the message-msgInput
   var msgInput = document.getElementById('message-input');
   var msg = document.getElementById('userQuoteText');
-  console.log(msgInput);
-  console.log(msg);
-
   msgInput.addEventListener('keypress', function(e){
     // Enter key pressed
    if (event.keyCode == 13 || event.which == 13){
@@ -13,10 +10,10 @@ document.body.onload = function(){
      if(message){
        msg.innerText = message;
        console.log('msg length' + msg.innerText.length);
-
        msg.style.display = 'block';
        var height = Math2.map(msg.innerText.length, 10, 80, 70, 110);
        createTree(height);
+
        // save the message value using the chrome extension storage API
        chrome.storage.sync.get(['messages'], function(results) {
          var messages = results.messages || [];
