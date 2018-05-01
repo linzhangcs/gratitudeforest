@@ -2,10 +2,12 @@ document.body.onload = function(){
   // Get message from the message-msgInput
   var msgInput = document.getElementById('message-input');
   var msg = document.getElementById('userQuoteText');
+  var share = document.getElementById('shareOptionContainer');
   msgInput.addEventListener('keypress', function(e){
     // Enter key pressed
    if (event.keyCode == 13 || event.which == 13){
      this.style.display = 'none';
+
      var message = msgInput.value.trim();
      if(message){
        msg.innerText = message;

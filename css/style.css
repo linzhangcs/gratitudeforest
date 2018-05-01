@@ -41,13 +41,13 @@
   font-size: 2em;
 }
 #userQuoteText {
-    margin: 5% auto;
+    margin: 5% auto 2%;
     display: none;
     background: #ffffff1a;
     color: #fff;
     text-shadow: 0px 1px 0 #426a5e;
     width: 50%;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     padding: 2%;
     font-size: 2em;
 }

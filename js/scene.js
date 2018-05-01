@@ -36,11 +36,11 @@ var parameters = {
   truncThickness:4,
   truncColor:Colors.grey_d,
   truncNoise:.5,
-  foliageColor:"yellows",
-  foliageDensity:5,
-  foliageNoise:.05,
-  foliageSize : 10,
-  animationSpeed: 2.5,
+  foliageColor:"greens",
+  foliageDensity: 7,
+  foliageNoise:.2,
+  foliageSize : 9,
+  animationSpeed: 2.2,
 };
 
 function initGUI(){
@@ -175,7 +175,7 @@ function initCore() {
 
   aspectRatio = WIDTH / HEIGHT;
   // fieldOfView = 60;
-  fieldOfView = 45;
+  fieldOfView = 50;
 
   nearPlane = 0.1;
   farPlane = 3000;
@@ -189,7 +189,7 @@ function initCore() {
 
   // Initial position and point the camera
   camera.position.x = 0;
-  camera.position.z = 460;
+  camera.position.z = 480;
   camera.position.y = 50;
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -274,7 +274,7 @@ function createForest(){
           var tree = new Tree(false, messages[i].length*4);
           tree.mesh.position.y = -5;
           tree.mesh.position.x = -((treeNum/2)*treesDist) + (i*treesDist);
-          tree.mesh.position.z = -Math.random()*200 -150;
+          tree.mesh.position.z = -Math.random()*200-200;
           scene.add(tree.mesh);
           trees.push(tree);
         }

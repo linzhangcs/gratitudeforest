@@ -34,15 +34,16 @@ Trunc = function(complex, height){
 	this.hierarchy = 1;
 
   this.truncHeight = height;
-  this.truncStartRadius = 3 * (height/110);
+  this.truncStartRadius = 3.2 * (height/120);
   this.foliageDensity =  2;
 
   // this.truncStartRadius = (complex) ? parameters.truncThickness : Math2.rangeRandom(2,4);
 
 	// parametrables
-	this.truncColor = (complex) ? parameters.truncColor : Colors.getRandomFrom(Colors.trunc);
+	// this.truncColor = (complex) ? parameters.truncColor : Colors.getRandomFrom(Colors.trunc);
 	// this.truncHeight = (complex) ? parameters.truncHeight : Math2.rangeRandom(70,100);
 	// this.truncStartRadius = (complex) ? parameters.truncThickness : Math2.rangeRandom(2,4);
+  this.truncColor = Colors.getRandomFrom(Colors.trunc);
 	this.verticalSegments = (complex)? Math2.rangeRandomInt(9,12) : Math2.rangeRandomInt(3,5);
 	this.radiusSegments = (complex)? Math2.rangeRandomInt(6,10) : Math2.rangeRandomInt(4,6);
 	this.shapeAngleStart = Math2.rangeRandom(Math.PI/4, Math.PI/2);
@@ -213,7 +214,9 @@ Trunc = function(complex, height){
 		cols["spike"] = Colors.red_l;
 		cols["fruit"] = Colors.red_d;
 
-	var colorFoliagePalette = (complex)? Colors[parameters.foliageColor] : Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens]);
+	// var colorFoliagePalette = (complex)? Colors[parameters.foliageColor] : Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens]);
+  // var colorFoliagePalette = (complex)? Colors[parameters.foliageColor] : Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens]);
+  var colorFoliagePalette = Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens]);
 
 	for (i=0; i<this.attachsVerts.length; i++){
 		var attDef = this.attachsVerts[i];
