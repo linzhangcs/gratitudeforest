@@ -213,7 +213,7 @@ Trunc = function(complex, height){
 		cols["spike"] = Colors.red_l;
 		cols["fruit"] = Colors.red_d;
 
-	var colorFoliagePalette = (complex)? Colors[parameters.foliageColor] : Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens, Colors.purples]);
+	var colorFoliagePalette = (complex)? Colors[parameters.foliageColor] : Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens]);
 
 	for (i=0; i<this.attachsVerts.length; i++){
 		var attDef = this.attachsVerts[i];

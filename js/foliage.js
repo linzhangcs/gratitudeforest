@@ -19,7 +19,7 @@ Foliage = function(scale, colorPalette, hierarchy,complex){
 	var defAttachs;
   if (complex){
     defAttachs = [
-			{type:"subFol", 	count : 6, 	minH : h*.2, 	maxH:h*.9, 	minAngle:0, 	maxAngle:0	},
+			{type:"subFol", 	count : 8, 	minH : h*.2, 	maxH:h*.9, 	minAngle:0, 	maxAngle:0	},
 		];
   }else{
     defAttachs = [];
@@ -55,27 +55,27 @@ SubFoliage = function(scale, hierarchy){
   this.mesh.userData.refClass = this;
 }
 
-Foliage.prototype.launchParticle = function(){
-  var p;
-	var col = Colors.getRandomFrom(this.colPalette);
-	if (waitingParticles.length){
-		p = waitingParticles.pop();
-		p.material.color.setHex(col);
-	}else {
-		p = new FlyingParticle(col, this.scale);
-	}
-	p.visible = true;
-	p.scale.x = p.scale.y = p.scale.z = this.scale/20;
-	p.userData.speedX = Math2.rangeRandom(1,3);
-	p.userData.speedY = Math2.rangeRandom(.5,1);
-
-	var vIndex = Math.floor(Math.random()*this.mesh.geometry.vertices.length);
-	var pos = this.mesh.geometry.vertices[vIndex].clone();
-	pos = this.mesh.localToWorld( pos );
-	p.position.copy(pos);
-	flyingParticles.push(p);
-	scene.add(p);
-}
+// Foliage.prototype.launchParticle = function(){
+//   var p;
+// 	var col = Colors.getRandomFrom(this.colPalette);
+// 	if (waitingParticles.length){
+// 		p = waitingParticles.pop();
+// 		p.material.color.setHex(col);
+// 	}else {
+// 		p = new FlyingParticle(col, this.scale);
+// 	}
+// 	p.visible = true;
+// 	p.scale.x = p.scale.y = p.scale.z = this.scale/20;
+// 	p.userData.speedX = Math2.rangeRandom(1,3);
+// 	p.userData.speedY = Math2.rangeRandom(.5,1);
+//
+// 	var vIndex = Math.floor(Math.random()*this.mesh.geometry.vertices.length);
+// 	var pos = this.mesh.geometry.vertices[vIndex].clone();
+// 	pos = this.mesh.localToWorld( pos );
+// 	p.position.copy(pos);
+// 	flyingParticles.push(p);
+// 	scene.add(p);
+// }
 
 Foliage.prototype.grow = function(){
   console.log("grow foliage");

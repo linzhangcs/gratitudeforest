@@ -28,7 +28,7 @@ Sky = function(colorPalette, scale){
 		// we are simply converting polar coordinates (angle, distance) into Cartesian coordinates (x, y)
 		// c.mesh.position.y = Math.sin(a)*h;
 		// c.mesh.position.x = Math.cos(a)*h;
-    c.mesh.position.y = Math.sin(a)*h;
+    c.mesh.position.y = h * 0.9;
 		c.mesh.position.x = Math.cos(a)*h;
 		// rotate the cloud according to its position
 		// c.mesh.rotation.z = a + Math.PI/2;
@@ -68,5 +68,22 @@ Sky = function(colorPalette, scale){
     // p.position.copy(pos);
     flyingParticles.push(p);
     scene.add(p);
+  }
+
+  Sky.prototype.moveClouds = function(){
+
+    for(var i = 0; i < this.nClouds; i++){
+      var c = this.mesh.children[i];
+      if(c.position.x < 800){
+        c.position.x += 1;
+      }else{
+        c.position.x = -1000;
+      }
+      if(c.position.z < 1000){
+        c.position.z += 0.5 ;
+      }else{
+        c.position.z = -800 ;
+      }
+    }
   }
 }

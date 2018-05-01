@@ -8,7 +8,7 @@ Cloud = function(){
 
 	// create a material; a simple white material will do the trick
 	var mat = new THREE.MeshPhongMaterial({
-		color:Colors.white,
+		color:Colors.blue
 	});
 
 	// duplicate the geometry a random number of times
@@ -37,4 +37,13 @@ Cloud = function(){
 		// add the cube to the container we first created
 		this.mesh.add(m);
 	}
+
+  // Cloud.prototype.move = function(){
+  //   for(var i = 0; i < this.mesh.length; i++){
+  //     this.mesh[i].position.x += 0.1;
+  //     // if(i%2 === 0 ){
+  //     //   this.mesh[i].position.z += 0.1;
+  //     // }
+  //   }
+  // }
 }

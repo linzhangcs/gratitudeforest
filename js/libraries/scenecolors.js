@@ -11,6 +11,7 @@ var Colors = {
     blue_l:0xc0c1ff,
     blue_m:0x888aee,
     blue_d:0x5557ad,
+    blue_s:0x86CDEB,
 
     yellow_l:0xf6dc9c,
     yellow_m:0xe9be55,
@@ -23,6 +24,8 @@ var Colors = {
     green_l:0xb5e5d9,
     green_m:0x7ebaab,
     green_d:0x3c7e6d,
+    green_b:0x188266,
+    green_f:0x48A882,
 
     purple_l:0xca9ebf,
     purple_m:0x94748c,
@@ -42,7 +45,7 @@ Colors.pinks = [
                 ];
 
 Colors.blues = [
-                Colors.blue_l, Colors.blue_m, Colors.blue_d,
+                Colors.blue_l, Colors.blue_m, Colors.blue_d,Colors.blue_s
                 ];
 
 Colors.yellows = [

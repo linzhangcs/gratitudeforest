@@ -19,7 +19,7 @@ var HEIGHT, WIDTH, windowHalfX, windowHalfY,
 ////////////////////////////////////////////////
 //                           3D MODELS VARIABLES
 ////////////////////////////////////////////////
-var floor, tree,
+var floor, tree, sky,
     globalWind = 0,
     trees = [],
     waitingParticles = [],
@@ -108,9 +108,11 @@ function handleTouchMove(event) {
 
 function render(){
   if (controls && controls.enabled) controls.update();
+  zoomIn();
+  sky.moveClouds();
   renderer.render(scene, camera);
 }
-
+// TweenLite.ticker.addEventListener('tick', render );
 ////////////////////////////////////////////////
 //                                        LIGHTS
 ////////////////////////////////////////////////
@@ -138,7 +140,7 @@ function createLights() {
 //                                        FLOOR
 ////////////////////////////////////////////////
 var Floor = function(){
-  var floorCol = Colors.green_d;
+  var floorCol = Colors.green_f;
   this.mesh =  new CustomMesh.PlaneMesh(1600,1600,12, floorCol);
   var vertices = this.mesh.geometry.vertices;
   for (var i=0; i<vertices.length; i++){
@@ -167,21 +169,28 @@ function initCore() {
   windowHalfY = HEIGHT / 2;
 
   scene = new THREE.Scene();
-  var fogcol = 0xcefaeb;//0x1c0403
-  scene.fog = new THREE.FogExp2( fogcol, 0.0028 ); //new THREE.Fog(fogcol, 300, 1000);
+  var fogcol = 0xF2FDF7//0xcefaeb;//0x1c0403
+  scene.fog = new THREE.FogExp2( fogcol, 0.0018 ); //new THREE.Fog(fogcol, 300, 1000);
+  // scene.fog = new THREE.Fog(fogcol, 50, 1000);
+
   aspectRatio = WIDTH / HEIGHT;
-  fieldOfView = 60;
-  nearPlane = .1;
+  // fieldOfView = 60;
+  fieldOfView = 45;
+
+  nearPlane = 0.1;
   farPlane = 3000;
+
   camera = new THREE.PerspectiveCamera(
     fieldOfView,
     aspectRatio,
     nearPlane,
     farPlane
     );
+
+  // Initial position and point the camera
   camera.position.x = 0;
-  camera.position.z = 150;
-  camera.position.y = 100;
+  camera.position.z = 460;
+  camera.position.y = 50;
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setSize(WIDTH, HEIGHT);
@@ -210,6 +219,19 @@ function initCore() {
   //*/
 
   console.log(controls);
+}
+
+function zoomIn(){
+  if(camera.position.z > 200){
+    // camera.position.y -= 0.01;
+    camera.position.z -= 0.1;
+    camera.position.y -= 0.1;
+  }
+  else if(camera.position.z > 400){
+    camera.position.z -= 0.2;
+    camera.position.y += 0.05;
+
+  }
 }
 
 ////////////////////////////////////////////////
@@ -289,11 +311,9 @@ function grow(mesh){
 
 window.addEventListener('load', init, false);
 
-var sky;
 function createSky(){
   var scale = (Math.floor(Math.random()*20)+5) *(1+Math.random()*.5);
   var particlePalette =  Colors.getRandomFrom([Colors.pinks, Colors.yellows, Colors.greens, Colors.purples]);
-  // var particlePalette = Colors.yellows;
 	sky = new Sky(particlePalette, scale);
 	sky.mesh.position.y = -600;
 	scene.add(sky.mesh);
@@ -301,7 +321,6 @@ function createSky(){
 
 function init(event){
   initCore();
-  // initGUI();
   createLights();
   createFloor();
   createSky();
@@ -322,7 +341,7 @@ function loop(){
   var frustum = new THREE.Frustum();
   frustum.setFromMatrix( new THREE.Matrix4().multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse ) );
   // sky.launchParticle();
-
+  // sky.moveClouds();
   // if (Math.random()>.5){
   //   var fol = foliages[Math.floor(Math.random()*foliages.length)];
   //   fol.launchParticle();
