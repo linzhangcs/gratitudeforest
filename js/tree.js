@@ -12,20 +12,6 @@ Tree = function(complex, height){
 	this.mesh.add(this.trunc.mesh);
 }
 
-Tree.prototype.kill = function(){
-  this.trunc.kill();
-  this.mesh = null;
-}
-
-Tree.prototype.fly = function(callback){
-  TweenMax.to(this.mesh.position, 1.5, {x:100, y:300, z:300, ease:Strong.easeIn, onComplete:function(){
-    if (callback) callback();
-  }});
-
-  TweenMax.to(this.mesh.rotation, 2, {z:-Math.PI/6, y:Math.PI/2, ease:Strong.easeInOut});
-  TweenMax.to(this.mesh.scale, 1.5, {y:1.1, x:.9, ease:Strong.easeInOut});
-}
-
 // TRUNC
 
 Trunc = function(complex, height){
@@ -37,12 +23,6 @@ Trunc = function(complex, height){
   this.truncStartRadius = 3.2 * (height/120);
   this.foliageDensity =  2;
 
-  // this.truncStartRadius = (complex) ? parameters.truncThickness : Math2.rangeRandom(2,4);
-
-	// parametrables
-	// this.truncColor = (complex) ? parameters.truncColor : Colors.getRandomFrom(Colors.trunc);
-	// this.truncHeight = (complex) ? parameters.truncHeight : Math2.rangeRandom(70,100);
-	// this.truncStartRadius = (complex) ? parameters.truncThickness : Math2.rangeRandom(2,4);
   this.truncColor = Colors.getRandomFrom(Colors.trunc);
 	this.verticalSegments = (complex)? Math2.rangeRandomInt(9,12) : Math2.rangeRandomInt(3,5);
 	this.radiusSegments = (complex)? Math2.rangeRandomInt(6,10) : Math2.rangeRandomInt(4,6);

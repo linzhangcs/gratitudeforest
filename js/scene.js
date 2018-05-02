@@ -189,7 +189,7 @@ function initCore() {
 
   // Initial position and point the camera
   camera.position.x = 0;
-  camera.position.z = 480;
+  camera.position.z = 550;
   camera.position.y = 50;
 
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -228,7 +228,7 @@ function zoomIn(){
     camera.position.y -= 0.1;
   }
   else if(camera.position.z > 400){
-    camera.position.z -= 0.2;
+    camera.position.z -= 0.18;
     camera.position.y += 0.05;
 
   }

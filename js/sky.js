@@ -6,7 +6,7 @@ Sky = function(colorPalette, scale){
 	this.mesh = new THREE.Object3D();
 
 	// choose a number of clouds to be scattered in the sky
-	this.nClouds = 50;
+	this.nClouds = 30;
 
   //colorPalette, scale, this.mesh.geometry.vertices.length
   this.colorPalette = colorPalette;
@@ -23,7 +23,7 @@ Sky = function(colorPalette, scale){
 		// set the rotation and the position of each cloud;
 		// for that we use a bit of trigonometry
 		var a = stepAngle*i; // this is the final angle of the cloud
-		var h = 900 + Math.random()*200; // this is the distance between the center of the axis and the cloud itself
+		var h = 1000 + Math.random()*200; // this is the distance between the center of the axis and the cloud itself
 
 		// we are simply converting polar coordinates (angle, distance) into Cartesian coordinates (x, y)
 		// c.mesh.position.y = Math.sin(a)*h;
